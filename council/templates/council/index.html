@@ -10,7 +10,9 @@
   <meta name="keyword" content="City Council - Employee Management System">
   <link rel="shortcut icon" href="{% static 'council/img/favicon.jpg' %}">
 
-  <title>Home | City Council</title>
+  {% block title %}
+
+  {% endblock title%}
 
   <!-- Bootstrap CSS -->
   <link href="{% static 'council/css/bootstrap.min.css' %}" rel="stylesheet">
