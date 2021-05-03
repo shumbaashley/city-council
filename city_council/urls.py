@@ -21,3 +21,8 @@ urlpatterns = [
     path('', include('council.urls'))
 
 ]
+
+
+admin.site.site_header = "City Council Admin"
+admin.site.site_title = "City Council Admin Portal"
+admin.site.index_title = "Welcome to City Council Admin Portal"
