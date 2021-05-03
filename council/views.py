@@ -10,11 +10,8 @@ def index(request):
     context = {
           "user": request.user
       }
-    return render(request, 'council/index.html', context)
+    return render(request, 'council/dashboard.html', context)
 
-def detail(request, question_id):
-    # question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': 'question'})
 
 def login_view(request):
       username = request.POST["username"]
@@ -29,3 +26,18 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return render(request, "council/login.html", {"message": "Logged out."})
+
+def activities(request):
+    data = {}
+    return render(request, 'council/activities.html', data)
+
+def profile(request):
+    data = {
+        "user": request.user
+      }
+    return render(request, 'council/profile.html', data)
+
+def dashboard(request):
+    data = {}
+    return render(request, 'council/dashboard.html', data)
+
