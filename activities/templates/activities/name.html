@@ -1,6 +1,8 @@
 <form action="{% url 'activities:index' %}" method="post">
     {% csrf_token %}
     {{form}}
+    {{form2}}
+    {{form3}}
     <!-- {{ form.non_field_errors }}
 <div class="fieldWrapper">
     {{ form.subject.errors }}
