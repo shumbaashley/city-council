@@ -14,15 +14,12 @@ MARITAL_STATUS_CHOICES = (
     ('divorced', 'Divorced'),
 )
 
-class Role(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    name = models.CharField(max_length=255)
-    class Meta:
-        ordering = ("name",)
+ROLE_CHOICES = (
+    ('regular', 'regular'),
+    ('supervisor', 'supervisor'),
+)
 
-    def __str__(self):
-      return self.name
 
 class Department(models.Model):  
     
@@ -45,7 +42,6 @@ class Employee(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="employee")
-    roles = models.ManyToManyField(Role,  blank=True,)
     photo = models.ImageField(max_length=255, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     home_address = models.CharField(max_length=100, blank=True, null=True)
@@ -54,6 +50,7 @@ class Employee(models.Model):
     sex = models.CharField(choices=GENDER_CHOICES, max_length=255)
     grade = models.CharField(blank=True, null=True,max_length=255)
     marital_status = models.CharField(choices=MARITAL_STATUS_CHOICES, max_length=255)
+    role = models.CharField(choices=ROLE_CHOICES, max_length=255)
     salary = models.DecimalField(max_digits=12, decimal_places=2)
     qualifications = models.CharField(max_length=500, blank=True, null=True)
     medical_records = models.CharField(max_length=500, blank=True, null=True)
