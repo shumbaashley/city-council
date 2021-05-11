@@ -14,19 +14,19 @@
   <section class="wrapper">
 
 
-          <!--overview start-->
-          <div class="row">
-            <div class="col-lg-12">
-              <h3 class="page-header"><i class="fa fa-laptop"></i> Activities</h3>
-              <ol class="breadcrumb">
-                <li><i class="fa fa-home"></i><a href="{% url 'council:index' %}">Home</a></li>
-                <li><i class="fa fa-laptop"></i>Activities</li>
-              </ol>
-            </div>
-          </div>
+ <!--overview start-->
+ <div class="row">
+  <div class="col-lg-12">
+    <h3 class="page-header"><i class="fa fa-laptop"></i> Work Plans</h3>
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home"></i><a href="{% url 'council:index' %}">Home</a></li>
+      <li><i class="fa fa-laptop"></i>Work Plans</li>
+    </ol>
+  </div>
+</div>
 
     <!-- Basic Forms & Horizontal Forms-->
-<!-- 
+
     <div class="row">
       <div class="col-lg-12">
         <section class="panel">
@@ -34,7 +34,8 @@
             Work Plan
           </header>
           <div class="panel-body">
-            <form role="form" action="{% url 'council:index' %}" method="POST">
+            <form role="form" action="{% url 'council:work-plans' %}" method="POST">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-lg-6">
 
@@ -130,14 +131,14 @@
                 </div>
               </div>
               
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
           </div>
         </section>
       </div>
     </div>
-  -->
+ 
     <!-- page end-->
   </section>
 </section>

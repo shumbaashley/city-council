@@ -1,10 +1,6 @@
 from django.contrib import admin
 
-from .models import Role, Department, Employee, DepartmentManager
-
-@admin.register(Role)
-class RoleAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+from .models import Department, Employee, DepartmentManager
 
 
 @admin.register(Department)
