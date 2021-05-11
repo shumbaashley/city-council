@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'activities',
 ]
 
+LOGIN_URL = '/'
+
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
