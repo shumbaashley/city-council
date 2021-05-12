@@ -2,6 +2,7 @@ asgiref
 dj-database-url
 Django
 django-bootstrap3
+django-crispy-forms
 gunicorn
 importlib-metadata
 Pillow
