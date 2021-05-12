@@ -13,18 +13,7 @@ class WorkPlan(models.Model):
     week_starting = models.DateField(null=True)
     week_ending = models.DateField(null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
-    
-
-    class Meta:
-        ordering = ("created_on",)
-
-    def __str__(self):
-        return 'Work plan for {} {} in the week starting {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_starting)
-
-class WorkPerformance(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     supervisor = models.OneToOneField(Employee, on_delete=models.CASCADE, related_name="superior")
-    work_plan = models.OneToOneField(WorkPlan, on_delete=models.CASCADE, related_name="plan")
     work_done = models.CharField(max_length=500, blank=True, null=True)
     evidence_of_work_done = models.CharField(max_length=500, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
@@ -39,7 +28,7 @@ class WorkPerformance(models.Model):
 
 class PerfomanceReview(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    work_performance = models.OneToOneField(WorkPerformance, on_delete=models.CASCADE, related_name="performance")
+    work_performance = models.OneToOneField(WorkPlan, on_delete=models.CASCADE, related_name="performance")
     comment_by_supervisor = models.CharField(max_length=100, blank=True, null=True)
     comment_by_director = models.CharField(max_length=100, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)

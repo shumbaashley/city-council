@@ -2,11 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 
 from .forms import WorkPlanForm
 
-@login_required
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "council/login.html", {"message": None})
@@ -27,36 +25,30 @@ def login_view(request):
           return render(request, "council/login.html", {"message": "Invalid credentials."})
 
 
-@login_required
 def logout_view(request):
     logout(request)
     return render(request, "council/login.html", {"message": "Logged out."})
     
-@login_required
 def activities(request):
     data = {}
     return render(request, 'council/activities.html', data)
 
-@login_required
 def profile(request):
     data = {
         "user": request.user
       }
     return render(request, 'council/profile.html', data)
 
-@login_required
 def performance(request):
     data = {
         "user": request.user
       }
     return render(request, 'council/performance.html', data)
 
-@login_required
 def dashboard(request):
     data = {}
     return render(request, 'council/dashboard.html', data)
 
-@login_required
 def work_plans(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':

@@ -2,13 +2,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.core.mail import send_mail
 
-from .forms import WorkPerformanceForm, WorkPlanForm, PerfomanceReviewForm
+from .forms import WorkPlanForm, PerfomanceReviewForm
 
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = WorkPerformanceForm(request.POST)
+        form = WorkPlanForm(request.POST)
 
 
         # form2 = WorkPerformanceForm(request.POST)
@@ -40,11 +40,9 @@ def get_name(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = WorkPlanForm()
-        form2 = WorkPerformanceForm()
         form3 = PerfomanceReviewForm()
 
     return render(request, 'activities/name.html', {
         'form': form,
-        'form2': form2,
         'form3': form3,
         })
