@@ -12,7 +12,7 @@ class NameForm(forms.Form):
 class WorkPlanForm(ModelForm):
     class Meta:
         model = WorkPlan
-        fields = ['employee', 'activities', 'work_to_be_done', 'week_starting', 'week_ending', 'supervisor', 'work_done', 'evidence_of_work_done']
+        fields = ['employee', 'activity1', 'work_to_be_done1', 'week_starting', 'week_ending', 'supervisors', 'work_done1', 'evidence_of_work_done1']
         labels = {
             "week_starting": _("Activity"),
             "week_ending": _("Activity"),
