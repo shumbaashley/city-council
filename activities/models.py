@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
 
-class WorkPlan(models.Model):
+class WeeklyPerfomanceReview(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     
     
@@ -59,7 +59,7 @@ class WorkPlan(models.Model):
 
 class PerfomanceReview(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    work_performance = models.OneToOneField(WorkPlan, on_delete=models.CASCADE, related_name="performance")
+    work_performance = models.OneToOneField(WeeklyPerfomanceReview, on_delete=models.CASCADE, related_name="performance")
     comment_by_supervisor = models.CharField(max_length=100, blank=True, null=True)
     checked_and_approved = models.BooleanField(default=False)
     comment_by_director = models.CharField(max_length=100, blank=True, null=True)

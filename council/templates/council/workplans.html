@@ -1,4 +1,5 @@
 {% extends 'council/index.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 
@@ -31,7 +32,7 @@
       <div class="col-lg-12">
         <section class="panel">
           <header class="panel-heading">
-            Work Plan
+            Weekly Perfomance Review Form
           </header>
           <div class="panel-body">
             <form role="form" action="{% url 'council:work-plans' %}" method="POST">
@@ -40,18 +41,18 @@
                 <div class="col-lg-6">
 
               <div class="form-group">
-                <label class="control-label col-sm-4">Week Starting</label>
+                <!-- <label class="control-label col-sm-4">Week Starting</label> -->
                 <div class="col-sm-6">
-                  <input id="dp1" type="text" name="weekstarting" value="{% now 'SHORT_DATE_FORMAT' %}" size="16" class="form-control">
+                  {{form.week_starting|as_crispy_field}}
                 </div>
               </div>
 </div>
               <div class="col-lg-6">
 
               <div class="form-group">
-                <label class="control-label col-sm-4">Week Ending</label>
+                <!-- <label class="control-label col-sm-4">Week Ending</label> -->
                 <div class="col-sm-6">
-                  <input id="dp2" type="text" name="weekending" value="{% now 'SHORT_DATE_FORMAT' %}" size="16" class="form-control">
+                  {{form.week_ending|as_crispy_field}}
                 </div>
               </div>
 </div>
@@ -59,29 +60,14 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="activity1">Activity </label>
-                    <input type="text" name="activity1" class="form-control" id="activity1" >
+                    <!-- <label for="activity1">Activity </label> -->
+                    {{form.activity1|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="worktobedone1">Work to be done </label>
-                    <input type="text" name="worktobedone1"  class="form-control" id="worktobedone1" >
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="activity2">Activity </label>
-                    <input type="text" name="activity2" class="form-control" id="activity2" >
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="worktobedone2">Work to be done </label>
-                    <input type="text" name="worktobedone2" class="form-control" id="worktobedone2" >
+                    <!-- <label for="worktobedone1">Work to be done </label> -->
+                    {{form.work_to_be_done1|as_crispy_field}}
                   </div>
                 </div>
               </div>
@@ -89,29 +75,14 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="activity3">Activity </label>
-                    <input type="text" name="activity3" class="form-control" id="activity3" >
+                    <!-- <label for="activity2">Activity </label> -->
+                    {{form.activity2|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="worktobedone3">Work to be done </label>
-                    <input type="text" name="worktobedone3" class="form-control" id="worktobedone3" >
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="activity4">Activity </label>
-                    <input type="text" name="activity4" class="form-control" id="activity4" >
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="worktobedone4">Work to be done </label>
-                    <input type="text" name="worktobedone4" class="form-control" id="worktobedone4" >
+                    <!-- <label for="worktobedone2">Work to be done </label> -->
+                    {{form.work_to_be_done2|as_crispy_field}}
                   </div>
                 </div>
               </div>
@@ -119,18 +90,76 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="activity5">Activity </label>
-                    <input type="text" name="activity5" class="form-control" id="activity5" >
+                    {{form.activity3|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="worktobedone5">Work to be done </label>
-                    <input type="text" name="worktobedone5" class="form-control" id="worktobedone5" >
+                    <!-- <label for="worktobedone3">Work to be done </label> -->
+                    {{form.work_to_be_done3|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    {{form.activity4|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="worktobedone4">Work to be done </label> -->
+                    {{form.work_to_be_done4|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="activity5">Activity </label> -->
+                    {{form.activity5|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="worktobedone5">Work to be done </label> -->
+                    {{form.work_to_be_done5|as_crispy_field}}
                   </div>
                 </div>
               </div>
               
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="activity1">Activity </label> -->
+                    {{form.activity6|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="worktobedone1">Work to be done </label> -->
+                    {{form.work_to_be_done6|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="activity1">Activity </label> -->
+                    {{form.activity7|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <!-- <label for="worktobedone1">Work to be done </label> -->
+                    {{form.work_to_be_done7|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
               <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
