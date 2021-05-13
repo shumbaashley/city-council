@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from council.models import Employee
-
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
 

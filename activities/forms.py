@@ -1,6 +1,7 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from .models import WorkPlan, PerfomanceReview
+from django.utils.translation import ugettext_lazy as _
 
 class NameForm(forms.Form):
     subject = forms.CharField(max_length=100)
@@ -12,41 +13,16 @@ class WorkPlanForm(ModelForm):
     class Meta:
         model = WorkPlan
         fields = ['employee', 'activities', 'work_to_be_done', 'week_starting', 'week_ending', 'supervisor', 'work_done', 'evidence_of_work_done']
-
+        labels = {
+            "week_starting": _("Activity"),
+            "week_ending": _("Activity"),
+        }
 
 class PerfomanceReviewForm(ModelForm):
     class Meta:
         model = PerfomanceReview
         fields = ['work_performance', 'comment_by_supervisor', 'comment_by_director',  ]
-        
-class ExampleForm(forms.Form):
-    like_website = forms.TypedChoiceField(
-        label = "Do you like this website?",
-        choices = ((1, "Yes"), (0, "No")),
-        coerce = lambda x: bool(int(x)),
-        widget = forms.RadioSelect,
-        initial = '1',
-        required = True,
-    )
-
-    favorite_food = forms.CharField(
-        label = "What is your favorite food?",
-        max_length = 80,
-        required = True,
-    )
-
-    favorite_color = forms.CharField(
-        label = "What is your favorite color?",
-        max_length = 80,
-        required = True,
-    )
-
-    favorite_number = forms.IntegerField(
-        label = "Favorite number",
-        required = False,
-    )
-
-    notes = forms.CharField(
-        label = "Additional notes or feedback",
-        required = False,
-    )
+        widgets = {
+            'comment_by_supervisor': Textarea(attrs={'cols': 80, 'rows': 20}),
+            'comment_by_director': Textarea(attrs={'cols': 20, 'rows': 5}),
+        }
