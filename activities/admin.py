@@ -4,4 +4,9 @@ from django.contrib import admin
 from .models import  WeeklyPerfomanceReview
 
 
-admin.site.register(WeeklyPerfomanceReview)
+# admin.site.register(WeeklyPerfomanceReview)
+
+
+@admin.register(WeeklyPerfomanceReview)
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ("employee", "week_starting", "created_on")
