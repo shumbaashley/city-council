@@ -60,7 +60,6 @@ def work_plans(request):
  
     else:
         form = WeeklyPerfomanceReviewForm()
-
         return render(request, 'council/workplans.html', {'form' : form})
 
 

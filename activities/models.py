@@ -46,7 +46,7 @@ class WeeklyPerfomanceReview(models.Model):
     innovations = models.CharField(max_length=500, blank=True, null=True)
     
     
-    supervisors = models.ManyToManyField(Employee, related_name="superiors")
+    # supervisors = models.ManyToManyField(Employee, related_name="superiors")
 
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
