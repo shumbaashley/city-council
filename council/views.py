@@ -1,9 +1,10 @@
+from council.models import Employee
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from activities.forms import WeeklyPerfomanceReviewForm
-from .forms import WorkPlanForm
+from django.shortcuts import get_object_or_404
 
 def index(request):
     if not request.user.is_authenticated:
@@ -52,12 +53,13 @@ def dashboard(request):
 def work_plans(request):
     if request.method == "POST":  
         form = WeeklyPerfomanceReviewForm(request.POST)  
-        if form.is_valid():  
-            try:  
-                return HttpResponseRedirect(reverse("council:index"))
-            except:  
-                return HttpResponse("Error")  
- 
+        
+        if form.is_valid():
+            new_review = form.save()
+            # employee =  get_object_or_404(Employee, pk=request.user.id)
+            # new_review.employee = employee
+            # new_review.save()  
+            return HttpResponseRedirect(reverse("council:index"))  
     else:
         form = WeeklyPerfomanceReviewForm()
         return render(request, 'council/workplans.html', {'form' : form})

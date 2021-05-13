@@ -6,10 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class WeeklyPerfomanceReview(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    
-    
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE, related_name="employee")
+        
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="staff_member")
 
     week_starting = models.DateField(null=True)
     week_ending = models.DateField(null=True)
@@ -54,7 +52,7 @@ class WeeklyPerfomanceReview(models.Model):
         ordering = ("created_on",)
 
     def __str__(self):
-        return 'Work results for {} {} according to the work plan for week starting {}'.format(self.work_plan.employee.user.first_name, self.work_plan.employee.user.last_name, self.work_plan.week_starting)
+        return 'Work results for {} {} according to the work plan for week starting {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_starting)
 
 
 class PerfomanceReview(models.Model):
