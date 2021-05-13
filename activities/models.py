@@ -52,7 +52,7 @@ class WeeklyPerfomanceReview(models.Model):
         ordering = ("created_on",)
 
     def __str__(self):
-        return 'Work results for {} {} according to the work plan for week starting {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_starting)
+        return '{} {} for the for week ending {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_ending)
 
 
 class PerfomanceReview(models.Model):
