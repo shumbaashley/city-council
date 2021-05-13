@@ -13,14 +13,14 @@ class WeeklyPerfomanceReview(models.Model):
     week_ending = models.DateField(null=True)
 
     ## Work Plan 
-    activity1 = models.CharField(max_length=500, blank=True, null=True)
+    activity1 = models.CharField(max_length=500)
     activity2 = models.CharField(max_length=500, blank=True, null=True)
     activity3 = models.CharField(max_length=500, blank=True, null=True)
     activity4 = models.CharField(max_length=500, blank=True, null=True)
     activity5 = models.CharField(max_length=500, blank=True, null=True)
     activity6 = models.CharField(max_length=500, blank=True, null=True)
     activity7 = models.CharField(max_length=500, blank=True, null=True)
-    work_to_be_done1 = models.CharField(max_length=500, blank=True, null=True)
+    work_to_be_done1 = models.CharField(max_length=500)
     work_to_be_done2 = models.CharField(max_length=500, blank=True, null=True)
     work_to_be_done3 = models.CharField(max_length=500, blank=True, null=True)
     work_to_be_done4 = models.CharField(max_length=500, blank=True, null=True)
