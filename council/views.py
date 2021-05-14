@@ -42,8 +42,10 @@ def activities(request):
     return render(request, 'council/activities.html', data)
 
 def profile(request):
+    employee =  get_object_or_404(Employee, user=request.user)
     data = {
-        "user": request.user
+        "user": request.user,
+        "employee": employee
       }
     return render(request, 'council/profile.html', data)
 

@@ -30,14 +30,14 @@
                 <div class="col-lg-2 col-sm-2">
                   <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                   <div class="follow-ava">
-                    <img src="{% static 'council/img/dummy.jpg' %}" alt="">
+                    <img src="{{MEDIA_URL}}{{employee.photo.url}}" alt="">
                   </div>
                   <h6>Employee</h6>
+                  <br/>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
                   <!-- <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p> -->
-                  <p>{{user.email}}</p>
-                  <!-- <p><i class="fa fa-twitter">jenifertweet</i></p> -->
+                  <p><i class="fa fa-envelope"> {{user.email}}</i></p>
                   <h6>
                                     <!-- <span><i class="icon_clock_alt"></i>{% now "H:i" %}</span> -->
                                     <span><i class="icon_calendar"></i>{% now "SHORT_DATE_FORMAT" %}</span>
@@ -222,7 +222,7 @@
                             <p><span>Last Name </span>: {{ user.last_name }}</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Birthday</span>: 27 August 1997</p>
+                            <p><span>Date of Birth</span>: {{employee.date_of_birth}}</p>
                           </div>
                           <div class="bio-row">
                             <p><span>Country </span>: Zimbabwe</p>
@@ -231,13 +231,25 @@
                             <p><span>Occupation </span>: Employee</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Email </span>: {{ user.email }}</p>
+                            <p><span>Sex </span>: {{ employee.sex }}</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Mobile </span>: (+263) 123 456 789</p>
+                            <p><span>Mobile </span>: {{ employee.phone_number }}</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Phone </span>: (+263) 123 456 789</p>
+                            <p><span> Marital Status</span>: {{employee.marital_status|title}}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Home Address </span>: {{ employee.home_address }}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span> Date joined</span>: {{employee.date_joined}}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Next Of Kin </span>: {{ employee.next_of_kin_name }}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Next of Kin</span>: {{ employee.next_of_kin_phone_number }}</p>
                           </div>
                         </div>
                       </div>
