@@ -49,7 +49,7 @@ class WeeklyPerfomanceReview(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
-        ordering = ("created_on",)
+        ordering = ("-created_on",)
 
     def __str__(self):
         return '{} {} for the for week ending {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_ending)
@@ -66,7 +66,7 @@ class PerfomanceReview(models.Model):
     
 
     class Meta:
-        ordering = ("created_on",)
+        ordering = ("-created_on",)
 
     def __str__(self):
         return 'Performance Review for {} {} on week ending {}'.format(self.work_results.work_plan.employee.user.first_name, self.work_results.work_plan.employee.user.last_name, self.work_results.work_plan.week_ending)
