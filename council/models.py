@@ -15,11 +15,6 @@ MARITAL_STATUS_CHOICES = (
 )
 
 
-ROLE_CHOICES = (
-    ('regular', 'regular'),
-    ('supervisor', 'supervisor'),
-)
-
 
 class Department(models.Model):  
     
@@ -31,7 +26,7 @@ class Department(models.Model):
     date_created = models.DateField(auto_now_add=True, null=True)
 
     class Meta:
-        ordering = ("date_created",)
+        ordering = ("-date_created",)
 
     def __str__(self):
         return self.name
@@ -46,22 +41,21 @@ class Employee(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     home_address = models.CharField(max_length=100, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    next_of_kin_phone_number = models.CharField(max_length=15, blank=True, null=True)
+    next_of_kin_phone_number = models.CharField(max_length=15,)
     sex = models.CharField(choices=GENDER_CHOICES, max_length=255)
     grade = models.CharField(blank=True, null=True,max_length=255)
     marital_status = models.CharField(choices=MARITAL_STATUS_CHOICES, max_length=255)
-    role = models.CharField(choices=ROLE_CHOICES, max_length=255)
     salary = models.DecimalField(max_digits=12, decimal_places=2)
     qualifications = models.CharField(max_length=500, blank=True, null=True)
     medical_records = models.CharField(max_length=500, blank=True, null=True)
-    next_of_kin_name = models.CharField(max_length=100, blank=True, null=True)
+    next_of_kin_name = models.CharField(max_length=100,)
     leave_record = models.CharField(max_length=500, blank=True, null=True)
     displinary_record = models.CharField(max_length=500, blank=True, null=True)
     date_joined = models.DateField(auto_now_add=True, null=True)
     
 
     class Meta:
-        ordering = ("date_joined",)
+        ordering = ("-date_joined",)
 
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)
@@ -75,7 +69,7 @@ class DepartmentManager(models.Model):
     to_date = models.DateField(blank=True, null=True)
 
     class Meta:
-        ordering = ("from_date",)
+        ordering = ("-from_date",)
 
     def __str__(self):
         return "{} - {}".format(self.employee, self.department)

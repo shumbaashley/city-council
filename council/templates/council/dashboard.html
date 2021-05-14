@@ -41,12 +41,18 @@
                 <tr>
                   <th><i class="icon_profile"></i> Full Name</th>
                   <th><i class="icon_calendar"></i> Date</th>
+                  <th><i class="icon_document_alt"></i> Reviewed</th>
                   <th><i class="icon_cogs"></i> Action</th>
                 </tr>
                 {% for item in table_info %}
                 <tr>
                   <td>{{item.employee}}</td>
                   <td>{{item.created_on}}</td>
+                    {% if item.checked_and_approved %}
+                    <td>Approved</td>
+                    {% else %}
+                    <td>Pending</td>
+                    {% endif %}
                   <td>
                     <div class="btn-group">
                       <a class="btn btn-primary" href="{% url 'council:edit_performance_review' item.id %}"><i class="icon_pencil"></i></a>
