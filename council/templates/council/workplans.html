@@ -5,7 +5,7 @@
 
 {% block title %}
 
-<title> Activities | City Council</title>
+<title> Perfomance Review | City Council</title>
 
 {% endblock title %}
 
@@ -35,6 +35,11 @@
             Weekly Perfomance Review Form
           </header>
           <div class="panel-body">
+            {% if message %}
+    <div class="m-3">
+       <p class="text-center font-weight-bold text-danger">{{ message }}</p> 
+    </div>
+{% endif %}
             <form role="form" action="{% url 'council:work-plans' %}" method="POST">
               {% csrf_token %}
 

@@ -14,7 +14,7 @@ def index(request):
         return render(request, "council/login.html", {"message": None})
 
     employee =  get_object_or_404(Employee, user=request.user)
-    table_info = WeeklyPerfomanceReview.objects.filter(employee=employee)
+    table_info = WeeklyPerfomanceReview.objects.filter(employee=employee)[0:10]
     data = {
         "user": request.user,
         "table_info" : table_info
@@ -71,12 +71,15 @@ def work_plans(request):
             # employee =  get_object_or_404(Employee, pk=request.user.id)
             # new_review.employee = employee
             # new_review.save()  
-            return HttpResponseRedirect(reverse("council:index"))  
+            return HttpResponseRedirect(reverse("council:index"))
+
+        form = WeeklyPerfomanceReviewForm()   
+        return render(request, "council/workplans.html", {'form' : form, "message": "Invalid data. Try again"})  
     else:
         form = WeeklyPerfomanceReviewForm()
         return render(request, 'council/workplans.html', {'form' : form})
 
-
+ 
 
 def edit(request, id=None, template_name='council/edit_review.html'):
     instance = get_object_or_404(WeeklyPerfomanceReview, pk=id)
