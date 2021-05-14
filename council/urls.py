@@ -13,4 +13,7 @@ urlpatterns = [
     path("profile", views.profile, name="profile"),
     path("work-plans/", views.work_plans, name="work-plans"),
     path("performance", views.performance, name="performance"),
+    path('edit-review/<int:id>/', views.review_edit, {}, 'review_edit'),
+    path('review/<int:id>/delete', views.delete_view, 'delete_view'),
+
 ]

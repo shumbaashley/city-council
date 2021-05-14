@@ -40,6 +40,15 @@ def edit(request, id=None, template_name='edit_review.html'):
     #     redirect_url = reverse(article_save_success)
     #     return redirect(redirect_url)
 
+    instance = MyModel.objects.get(whatever)
+    if request.method == "POST":
+        form = MyModelForm(request.POST, instance=instance)
+
+    else:
+        form = MyModelForm(instance=instance)
+
     return render(request, template_name, {
-        # 'form': form
+        'form': form
     })
+
+

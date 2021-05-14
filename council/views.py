@@ -6,6 +6,7 @@ from django.urls import reverse
 from activities.forms import WeeklyPerfomanceReviewForm
 from django.shortcuts import get_object_or_404
 from activities.models import WeeklyPerfomanceReview
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -75,3 +76,66 @@ def work_plans(request):
 
 
 
+def edit(request, id=None, template_name='council/edit_review.html'):
+    instance = get_object_or_404(WeeklyPerfomanceReview, pk=id)
+    if request.method == "POST":
+        form = WeeklyPerfomanceReviewForm(request.POST, instance=instance)
+        # if form.is_valid():
+        #     form.save()
+    else:
+        form = WeeklyPerfomanceReviewForm(instance=instance)
+
+    return render(request, template_name, {
+        'form': form,
+        'id': id,
+    })
+
+
+def review_edit(request, id):
+    # review = get_object_or_404(WeeklyPerfomanceReview, pk=pk)
+    # if request.method == "POST":
+    #     form = WeeklyPerfomanceReviewForm(request.POST, instance=review)
+    #     if form.is_valid():
+    #         review = form.save(commit=False)
+    #         review.save()
+    #         render(request, 'council/edit_review.html', {'form': form, 'id' : pk})
+    # else:
+    #     form = WeeklyPerfomanceReviewForm(instance=review)
+    # return render(request, 'council/edit_review.html', {'form': form, 'id' : pk})
+
+  # dictionary for initial data with 
+    # field names as keys
+    context ={}
+  
+    # fetch the object related to passed id
+    obj = get_object_or_404(WeeklyPerfomanceReview, id = id)
+  
+    # pass the object as instance in form
+    form = WeeklyPerfomanceReviewForm(request.POST or None, instance = obj)
+  
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
+  
+    # add form dictionary to context
+    context["form"] = form
+    context["id"] = id
+  
+    return render(request, "council/edit_review.html", context)
+
+
+
+# delete view for details
+def delete_view(request, id):
+    context ={}
+    obj = get_object_or_404(WeeklyPerfomanceReview, id = id)
+    if request.method =="POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        return HttpResponseRedirect("/")
+  
+    return render(request, "delete_view.html", context)
