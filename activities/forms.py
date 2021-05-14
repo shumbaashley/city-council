@@ -1,9 +1,17 @@
 from django import forms
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, RadioSelect
 from .models import WeeklyPerfomanceReview, PerfomanceReview
 from django.utils.translation import ugettext_lazy as _
 
 class WeeklyPerfomanceReviewForm(ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+       super(WeeklyPerfomanceReviewForm, self).__init__(*args, **kwargs)
+       self.fields['comment_by_supervisor'].widget.attrs['readonly'] = True
+       self.fields['comment_by_assistant_director'].widget.attrs['readonly'] = True
+       self.fields['checked_and_approved'].disabled = True
+       self.fields['comment_by_director'].widget.attrs['readonly'] = True
     class Meta:
         model = WeeklyPerfomanceReview
         exclude = ('employee',)
@@ -34,11 +42,18 @@ class WeeklyPerfomanceReviewForm(ModelForm):
             "evidence_of_work_done5": _("Evidence of work done"),
             "evaluation": _("Evaluation of work done (RESULTS):"),
             "innovations": _("Innovation and Initiatives for the week"),
+            "comment_by_supervisor": _("Comments by immediate Supervisor"),
+            "comment_by_assistant_director": _("Comments by Assistant Director of Finance"),
+            "comment_by_director": _("Comments by Director of Finance"),
+            "checked_and_approved": _("Checked and Approved as a true record"),
         }
         widgets = {
             'evaluation': Textarea(attrs={'cols': 20, 'rows': 5}),
             'innovations': Textarea(attrs={'cols': 20, 'rows': 5}),
-        }
+            'comment_by_supervisor': Textarea(attrs={'cols': 20, 'rows': 5}),
+            'comment_by_assistant_director': Textarea(attrs={'cols': 20, 'rows': 5}),
+            'comment_by_director': Textarea(attrs={'cols': 20, 'rows': 5}),
+               }
         help_texts = {
             'week_starting': _('Use format YYYY-MM-DD.'),
             'week_ending': _('Use format YYYY-MM-DD.'),

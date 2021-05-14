@@ -48,6 +48,11 @@ class WeeklyPerfomanceReview(models.Model):
 
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
+    comment_by_supervisor = models.CharField(max_length=100, blank=True, null=True)
+    checked_and_approved = models.BooleanField(default=False)
+    comment_by_director = models.CharField(max_length=100, blank=True, null=True)
+    comment_by_assistant_director = models.CharField(max_length=100, blank=True, null=True)
+
     class Meta:
         ordering = ("-created_on",)
 
