@@ -11,9 +11,7 @@ urlpatterns = [
     path("activities", views.activities, name="activities"),
     path("dashboard", views.dashboard, name="dashboard"),
     path("profile", views.profile, name="profile"),
-    path("work-plans/", views.work_plans, name="work-plans"),
-    path("performance", views.performance, name="performance"),
-    path('edit-review/<int:id>/', views.review_edit, {}, 'review_edit'),
-    path('review/<int:id>/delete', views.delete_view, 'delete_view'),
-
+    path('delete-performance-review/<int:id>/delete', views.delete_view, 'delete_view'),
+    path('edit-performance-review/<int:review_id>/', views.edit_performance_review, name="edit_performance_review"),
+    path('create-performance-review/', views.create_performance_review, name="create_performance_review"),
 ]

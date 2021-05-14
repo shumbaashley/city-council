@@ -74,10 +74,10 @@ def work_plans(request):
             return HttpResponseRedirect(reverse("council:index"))
 
         form = WeeklyPerfomanceReviewForm()   
-        return render(request, "council/workplans.html", {'form' : form, "message": "Invalid data. Try again"})  
+        return render(request, "council/create_perfomance_review.html", {'form' : form, "message": "Invalid data. Try again"})  
     else:
         form = WeeklyPerfomanceReviewForm()
-        return render(request, 'council/workplans.html', {'form' : form})
+        return render(request, 'council/create_perfomance_review.html', {'form' : form})
 
  
 
@@ -144,3 +144,36 @@ def delete_view(request, id):
         return HttpResponseRedirect("/")
   
     return render(request, "delete_view.html", context)
+
+
+def create_performance_review(request):
+    form = WeeklyPerfomanceReviewForm()
+
+    if request.method == "POST":
+        form = WeeklyPerfomanceReviewForm(request.POST)
+
+        if form.is_valid():
+            review = form.save(commit=False)
+            employee =  get_object_or_404(Employee, user=request.user)
+            review.employee = employee
+            review.save()
+            return HttpResponseRedirect(reverse("council:index"))
+
+    return render(request, "council/create_performance_review.html", {
+        "form" : form
+    })
+
+
+def edit_performance_review(request, review_id):
+    form = WeeklyPerfomanceReviewForm(instance = WeeklyPerfomanceReview.objects.get(id=review_id))
+
+    if request.method == "POST":
+        form = WeeklyPerfomanceReviewForm(request.POST, instance = WeeklyPerfomanceReview.objects.get(id=review_id))
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("council:index"))
+
+    return render(request, "council/edit_performance_review.html", {
+        "form" : form
+    })

@@ -40,22 +40,9 @@
        <p class="text-center font-weight-bold text-danger">{{ message }}</p> 
     </div>
 {% endif %}
-            <form role="form" action="{% url 'council:work-plans' %}" method="POST">
+            <form role="form" action="" method="POST">
               {% csrf_token %}
 
-              <div class="row">
-                <div class="col-lg-6">
-
-                  <div class="form-group">
-                    <!-- <label class="control-label col-sm-4">Week Starting</label> -->
-                    <div class="col-sm-10">
-                      {{form.employee|as_crispy_field}}
-                    </div>
-                  </div>
-
-                  </div>
-              </div>
-              
 
               <div class="row">
                 <div class="col-lg-6">

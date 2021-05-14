@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 class WeeklyPerfomanceReviewForm(ModelForm):
     class Meta:
         model = WeeklyPerfomanceReview
-        fields = '__all__'
+        exclude = ('employee',)
         labels = {
             "activity1": _("Activity"),
             "activity2": _("Activity"),
