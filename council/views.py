@@ -5,14 +5,20 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from activities.forms import WeeklyPerfomanceReviewForm
 from django.shortcuts import get_object_or_404
+from activities.models import WeeklyPerfomanceReview
+
 
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "council/login.html", {"message": None})
-    context = {
-          "user": request.user
+
+    employee =  get_object_or_404(Employee, user=request.user)
+    table_info = WeeklyPerfomanceReview.objects.filter(employee=employee)
+    data = {
+        "user": request.user,
+        "table_info" : table_info
       }
-    return render(request, 'council/dashboard.html', context)
+    return render(request, 'council/dashboard.html', data)
 
 
 def login_view(request):
@@ -41,10 +47,13 @@ def profile(request):
     return render(request, 'council/profile.html', data)
 
 def performance(request):
+    employee =  get_object_or_404(Employee, user=request.user)
+    table_info = WeeklyPerfomanceReview.objects.filter(employee=employee)
     data = {
-        "user": request.user
+        "user": request.user,
+        "table_info" : table_info
       }
-    return render(request, 'council/performance.html', data)
+    return render(request, 'council/basic_table.html', data)
 
 def dashboard(request):
     data = {}
