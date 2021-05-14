@@ -32,6 +32,10 @@
               Perfomance Reviews Table
             </header>
 
+            {% if not table_info %}
+            <p class="text-center">You currently have no perfomance reviews yet! <a href="{% url 'council:work-plans' %}" class="text-primary">Create One</a> </p>
+
+            {% else %}
             <table class="table table-striped table-advance table-hover">
               <tbody>
                 <tr>
@@ -51,9 +55,13 @@
                     </div>
                   </td>
                 </tr>
+
               {% endfor %}
               </tbody>
             </table>
+
+            {% endif %}
+
           </section>
         </div>
       </div>
