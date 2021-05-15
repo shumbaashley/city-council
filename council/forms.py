@@ -15,7 +15,7 @@ class WeeklyPerfomanceReviewForm(ModelForm):
        
     class Meta:
         model = WeeklyPerfomanceReview
-        exclude = ('employee',)
+        exclude = ('employee', 'department')
         labels = {
             "activity1": _("Activity"),
             "activity2": _("Activity"),

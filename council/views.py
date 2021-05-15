@@ -1,4 +1,4 @@
-from council.models import Employee
+from council.models import Employee, Department
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
@@ -36,10 +36,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return render(request, "council/login.html", {"message": "Logged out."})
-    
-def activities(request):
-    data = {}
-    return render(request, 'council/activities.html', data)
+
 
 def profile(request):
     employee =  get_object_or_404(Employee, user=request.user)
@@ -48,88 +45,6 @@ def profile(request):
         "employee": employee
       }
     return render(request, 'council/profile.html', data)
-
-def performance(request):
-    employee =  get_object_or_404(Employee, user=request.user)
-    table_info = WeeklyPerfomanceReview.objects.filter(employee=employee)
-    data = {
-        "user": request.user,
-        "table_info" : table_info
-      }
-    return render(request, 'council/basic_table.html', data)
-
-def dashboard(request):
-    data = {}
-    return render(request, 'council/dashboard.html', data)
-
-def work_plans(request):
-    if request.method == "POST":  
-        form = WeeklyPerfomanceReviewForm(request.POST)  
-        
-        if form.is_valid():
-            new_review = form.save()
-            # employee =  get_object_or_404(Employee, pk=request.user.id)
-            # new_review.employee = employee
-            # new_review.save()  
-            return HttpResponseRedirect(reverse("council:index"))
-
-        form = WeeklyPerfomanceReviewForm()   
-        return render(request, "council/create_perfomance_review.html", {'form' : form, "message": "Invalid data. Try again"})  
-    else:
-        form = WeeklyPerfomanceReviewForm()
-        return render(request, 'council/create_perfomance_review.html', {'form' : form})
-
- 
-
-def edit(request, id=None, template_name='council/edit_review.html'):
-    instance = get_object_or_404(WeeklyPerfomanceReview, pk=id)
-    if request.method == "POST":
-        form = WeeklyPerfomanceReviewForm(request.POST, instance=instance)
-        # if form.is_valid():
-        #     form.save()
-    else:
-        form = WeeklyPerfomanceReviewForm(instance=instance)
-
-    return render(request, template_name, {
-        'form': form,
-        'id': id,
-    })
-
-
-def review_edit(request, id):
-    # review = get_object_or_404(WeeklyPerfomanceReview, pk=pk)
-    # if request.method == "POST":
-    #     form = WeeklyPerfomanceReviewForm(request.POST, instance=review)
-    #     if form.is_valid():
-    #         review = form.save(commit=False)
-    #         review.save()
-    #         render(request, 'council/edit_review.html', {'form': form, 'id' : pk})
-    # else:
-    #     form = WeeklyPerfomanceReviewForm(instance=review)
-    # return render(request, 'council/edit_review.html', {'form': form, 'id' : pk})
-
-  # dictionary for initial data with 
-    # field names as keys
-    context ={}
-  
-    # fetch the object related to passed id
-    obj = get_object_or_404(WeeklyPerfomanceReview, id = id)
-  
-    # pass the object as instance in form
-    form = WeeklyPerfomanceReviewForm(request.POST or None, instance = obj)
-  
-    # save the data from the form and
-    # redirect to detail_view
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/")
-  
-    # add form dictionary to context
-    context["form"] = form
-    context["id"] = id
-  
-    return render(request, "council/edit_review.html", context)
-
 
 
 # delete view for details
@@ -155,7 +70,9 @@ def create_performance_review(request):
         if form.is_valid():
             review = form.save(commit=False)
             employee =  get_object_or_404(Employee, user=request.user)
+            department =  get_object_or_404(Department, id=employee.department.id)
             review.employee = employee
+            review.department = department
             review.save()
             return HttpResponseRedirect(reverse("council:index"))
 

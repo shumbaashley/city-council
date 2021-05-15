@@ -8,8 +8,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
-    path("activities", views.activities, name="activities"),
-    path("dashboard", views.dashboard, name="dashboard"),
     path("profile", views.profile, name="profile"),
     path('delete-performance-review/<int:id>/delete', views.delete_view, 'delete_view'),
     path('edit-performance-review/<int:review_id>/', views.edit_performance_review, name="edit_performance_review"),
