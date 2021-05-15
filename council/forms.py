@@ -1,10 +1,9 @@
 from django import forms
 from django.forms import ModelForm, Textarea, RadioSelect
-from .models import WeeklyPerfomanceReview, PerfomanceReview
+from .models import WeeklyPerfomanceReview
 from django.utils.translation import ugettext_lazy as _
 
 class WeeklyPerfomanceReviewForm(ModelForm):
-
 
     def __init__(self, *args, **kwargs):
        super(WeeklyPerfomanceReviewForm, self).__init__(*args, **kwargs)
@@ -12,6 +11,8 @@ class WeeklyPerfomanceReviewForm(ModelForm):
        self.fields['comment_by_assistant_director'].widget.attrs['readonly'] = True
        self.fields['checked_and_approved'].disabled = True
        self.fields['comment_by_director'].widget.attrs['readonly'] = True
+
+       
     class Meta:
         model = WeeklyPerfomanceReview
         exclude = ('employee',)
@@ -57,13 +58,4 @@ class WeeklyPerfomanceReviewForm(ModelForm):
         help_texts = {
             'week_starting': _('Use format YYYY-MM-DD.'),
             'week_ending': _('Use format YYYY-MM-DD.'),
-        }
-
-class PerfomanceReviewForm(ModelForm):
-    class Meta:
-        model = PerfomanceReview
-        fields = ['work_performance', 'comment_by_supervisor', 'comment_by_director',  ]
-        widgets = {
-            'comment_by_supervisor': Textarea(attrs={'cols': 80, 'rows': 20}),
-            'comment_by_director': Textarea(attrs={'cols': 20, 'rows': 5}),
         }

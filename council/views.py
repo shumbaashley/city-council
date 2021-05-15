@@ -3,9 +3,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from activities.forms import WeeklyPerfomanceReviewForm
+from .forms import WeeklyPerfomanceReviewForm
 from django.shortcuts import get_object_or_404
-from activities.models import WeeklyPerfomanceReview
+from .models import WeeklyPerfomanceReview
 from django.shortcuts import redirect
 
 
