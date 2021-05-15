@@ -3,6 +3,9 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from .models import Department, Employee, DepartmentManager, User, WeeklyPerfomanceReview
 
+from django.contrib.auth.models import Group
+
+admin.site.unregister(Group)
 
 class UserCreateForm(UserCreationForm):
 
