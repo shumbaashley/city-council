@@ -55,9 +55,9 @@ class Employee(models.Model):
     salary = models.DecimalField(max_digits=12, decimal_places=2)
     qualifications = models.TextField(max_length=500, blank=True, null=True)
     medical_records = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Medical Records')
-    leave_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'first name')
-    displinary_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'first name')
-    date_joined = models.DateField(auto_now_add=True, null=True, verbose_name = 'first name')
+    leave_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Leave Record')
+    displinary_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Displinary Record')
+    date_joined = models.DateField(auto_now_add=True, null=True)
     
 
     class Meta:
