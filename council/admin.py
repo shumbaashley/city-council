@@ -11,7 +11,7 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name' , 'last_name', 'email')
+        fields = ('username', 'first_name' , 'last_name', 'email', 'is_staff')
 
 
 class UserAdmin(UserAdmin):
@@ -21,7 +21,7 @@ class UserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'username', 'email',  'password1', 'password2', ),
+            'fields': ('first_name', 'last_name', 'username', 'email', 'is_staff',  'password1', 'password2', ),
         }),
     )
 
