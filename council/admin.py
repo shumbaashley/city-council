@@ -32,19 +32,24 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ("name", "department_number", "sub_departments", "date_created")
+    list_display = ("name", "department_number", "sub_departments",)
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ("user", "photo",  "sex",  "phone_number", "salary", "home_address", "date_joined", "next_of_kin_name", "next_of_kin_phone_number")
+    list_display = ("user" , "department", "photo",  "sex",  "phone_number", "date_joined",)
+    list_display_links = ("photo", "department")
+    list_filter = ("user", "department","date_joined",)
+    search_fields = ("user", "department",)
 
 
-
-@admin.register(DepartmentManager)
-class DepartmentManagerAdmin(admin.ModelAdmin):
-    list_display = ("employee", "department", "from_date", "to_date")
+# @admin.register(DepartmentManager)
+# class DepartmentManagerAdmin(admin.ModelAdmin):
+#     list_display = ("employee", "department", "from_date", "to_date")
 
 
 @admin.register(WeeklyPerfomanceReview)
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ("employee",  "week_starting", "week_ending", "created_on")
+    list_display = ("employee", "department", "week_starting", "week_ending", "checked_and_approved", "created_on")
+    list_display_links = ("employee", "department",)
+    list_filter = ("employee", "department",  "checked_and_approved", "week_starting", "week_ending",)
+    search_fields = ("employee", "department",)
