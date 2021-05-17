@@ -37,7 +37,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ("user" , "department", "photo",  "sex",  "phone_number", "date_joined",)
-    list_display_links = ("photo", "department")
+    list_display_links = ("user", "photo", "department")
     list_filter = ("user", "department","date_joined",)
     search_fields = ("user", "department",)
 

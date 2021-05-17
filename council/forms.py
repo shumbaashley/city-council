@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea, RadioSelect
-from .models import WeeklyPerfomanceReview
+from .models import WeeklyPerfomanceReview, Employee
 from django.utils.translation import ugettext_lazy as _
 
 class WeeklyPerfomanceReviewForm(ModelForm):
@@ -59,3 +59,49 @@ class WeeklyPerfomanceReviewForm(ModelForm):
             'week_starting': _('Use format YYYY-MM-DD.'),
             'week_ending': _('Use format YYYY-MM-DD.'),
         }
+
+
+class EmployeeProfileForm(ModelForm):
+
+    # def __init__(self, *args, **kwargs):
+    #    super(Employee, self).__init__(*args, **kwargs)
+    #    self.fields['comment_by_supervisor'].widget.attrs['readonly'] = True
+    #    self.fields['comment_by_assistant_director'].widget.attrs['readonly'] = True
+    #    self.fields['checked_and_approved'].disabled = True
+    #    self.fields['comment_by_director'].widget.attrs['readonly'] = True
+
+       
+    class Meta:
+        model = Employee
+        exclude = ('id', 'user', 'department', 'medical_records', 'leave_record', 'displinary_record', 'date_joined', 'salary', 'grade', 'qualifications' , 'sex' )
+        labels = {
+            "photo": _(""),
+            "date_of_birth": _(""),
+            "marital_status": _(""),
+            "home_address": _(""),
+            "phone_number": _(""),
+            "next_of_kin_name": _(""),
+            "next_of_kin_phone_number": _(""),
+        }
+        widgets = {
+            'home_address': Textarea(attrs={'cols': 20, 'rows': 5}),
+        }
+        help_texts = {
+            'date_of_birth': _('Use format YYYY-MM-DD.'),
+        }
+
+    # photo 
+    # date_of_birth
+    # sex 
+    # marital_status  
+    # home_address 
+    # phone_number 
+    # next_of_kin_name 
+    # next_of_kin_phone_number 
+    # grade 
+    # salary 
+    # qualifications 
+    # medical_records  
+    # leave_record 
+    # date_joined 
+    

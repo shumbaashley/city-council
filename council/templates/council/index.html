@@ -275,7 +275,13 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" style="width: 30px; height: 30;" src="{% static 'council/img/dummy.jpg' %}">
+                                
+
+                              {% if employee.photo.url %}
+                              <img alt="" style="width: 30px; height: 30px;" src="{{MEDIA_URL}}{{employee.photo.url}}">
+                              {% else %}
+                              <img style="width: 30px; height: 30px;" src="{% static 'council/img/dummy.jpg' %}" alt="">
+                              {% endif %}
                             </span>
                             <span class="username">{{ user.first_name }} {{ user.last_name }}</span>
                             <b class="caret"></b>

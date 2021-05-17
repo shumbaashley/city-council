@@ -83,6 +83,7 @@ class DepartmentManager(models.Model):
         return "{} - {}".format(self.employee, self.department)
 
 class WeeklyPerfomanceReview(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
         
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="staff_member")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="dept")

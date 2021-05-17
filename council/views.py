@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .forms import WeeklyPerfomanceReviewForm
+from .forms import WeeklyPerfomanceReviewForm, EmployeeProfileForm
 from django.shortcuts import get_object_or_404
 from .models import WeeklyPerfomanceReview
 from django.shortcuts import redirect
@@ -93,4 +93,22 @@ def edit_performance_review(request, review_id):
 
     return render(request, "council/edit_performance_review.html", {
         "form" : form
+    })
+
+def edit_profile(request, employee_id):
+    form = EmployeeProfileForm(instance = Employee.objects.get(id=employee_id))
+    employee =  get_object_or_404(Employee, user=request.user)
+
+    if request.method == "POST":
+        form = EmployeeProfileForm(request.POST, request.FILES, instance = Employee.objects.get(id=employee_id))
+        print("gets here")
+
+        if form.is_valid():
+            print("works")
+            form.save()
+            return HttpResponseRedirect(reverse("council:profile"))
+
+    return render(request, "council/edit_profile.html", {
+        "form" : form,
+        'employee' : employee
     })
