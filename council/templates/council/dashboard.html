@@ -40,16 +40,22 @@
               <tbody>
                 <tr>
                   <th><i class="icon_profile"></i> Full Name</th>
+                  <th><i class="icon_document_alt"></i> Highlights</th>
                   <th><i class="icon_calendar"></i> Date</th>
-                  <th><i class="icon_document_alt"></i> Reviewed</th>
+                  <th><i class="icon_document_alt"></i> Approved</th>
                   <th><i class="icon_cogs"></i> Action</th>
                 </tr>
                 {% for item in table_info %}
                 <tr>
                   <td>{{item.employee}}</td>
+                  {% if item.work_done1 and item.work_to_be_done1 %}
+                  <td>{{item.work_done1|truncatechars:35 }} {{item.evidence_of_work_done1|truncatechars:35 }}</td>
+                  {% else %}
+                  <td>{{item.activity1|truncatechars:35 }} {{item.work_to_be_done1|truncatechars:35 }}</td>
+                  {% endif %}
                   <td>{{item.created_on}}</td>
                     {% if item.checked_and_approved %}
-                    <td>Approved</td>
+                    <td>Checked and Approved</td>
                     {% else %}
                     <td>Pending</td>
                     {% endif %}
