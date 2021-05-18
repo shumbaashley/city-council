@@ -3,6 +3,10 @@ from django.forms import ModelForm, Textarea, RadioSelect
 from .models import WeeklyPerfomanceReview, Employee
 from django.utils.translation import ugettext_lazy as _
 
+
+class DateInput(forms.DateTimeInput):
+    input_type = 'date'
+
 class WeeklyPerfomanceReviewForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -54,10 +58,8 @@ class WeeklyPerfomanceReviewForm(ModelForm):
             'comment_by_supervisor': Textarea(attrs={'cols': 20, 'rows': 5}),
             'comment_by_assistant_director': Textarea(attrs={'cols': 20, 'rows': 5}),
             'comment_by_director': Textarea(attrs={'cols': 20, 'rows': 5}),
-               }
-        help_texts = {
-            'week_starting': _('Use format YYYY-MM-DD.'),
-            'week_ending': _('Use format YYYY-MM-DD.'),
+            'week_starting': DateInput(),
+            'week_ending': DateInput(),
         }
 
 
