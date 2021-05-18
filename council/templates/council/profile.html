@@ -229,8 +229,14 @@
                             <p><span>Date of Birth</span>: {{employee.date_of_birth}}</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Sex </span>: {{ employee.sex }}</p>
-                          </div>
+                            
+                    {% if employee.sex == 'M' %}
+                    <p><span>Sex </span>: Male</p>
+                    {% else %}
+                    <p><span>Sex </span>: Female</p>
+                    {% endif  %}
+                          
+                            </div>
                           <div class="bio-row">
                             <p><span>Mobile </span>: {{ employee.phone_number }}</p>
                           </div>
