@@ -89,10 +89,9 @@ class EmployeeProfileForm(ModelForm):
         }
         widgets = {
             'home_address': Textarea(attrs={'cols': 20, 'rows': 5}),
+            'date_of_birth': DateInput(),
         }
-        help_texts = {
-            'date_of_birth': _('Use format YYYY-MM-DD.'),
-        }
+
 
     # photo 
     # date_of_birth
