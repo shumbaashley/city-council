@@ -277,7 +277,7 @@
                             <span class="profile-ava">
                                 
 
-                              {% if employee.photo.url %}
+                              {% if employee.photo %}
                               <img alt="" style="width: 30px; height: 30px;" src="{{MEDIA_URL}}{{employee.photo.url}}">
                               {% else %}
                               <img style="width: 30px; height: 30px;" src="{% static 'council/img/dummy.jpg' %}" alt="">

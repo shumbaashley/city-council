@@ -31,7 +31,7 @@
                 <div class="col-lg-2 col-sm-2">
                   <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                   <div class="follow-ava">
-                    {% if employee.photo.url %}
+                    {% if employee.photo %}
                     <img src="{{MEDIA_URL}}{{employee.photo.url}}" alt="">
                     {% else %}
                     <img src="{% static 'council/img/dummy.jpg' %}" alt="">
