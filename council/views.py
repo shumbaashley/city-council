@@ -7,6 +7,7 @@ from .forms import WeeklyPerfomanceReviewForm, EmployeeProfileForm
 from django.shortcuts import get_object_or_404
 from .models import WeeklyPerfomanceReview
 from django.shortcuts import redirect
+from django.contrib import messages
 
 
 def index(request):
@@ -74,6 +75,7 @@ def create_performance_review(request):
             review.employee = employee
             review.department = department
             review.save()
+            messages.success(request, 'Your perfomance review has been created.')
             return HttpResponseRedirect(reverse("council:index"))
 
     return render(request, "council/create_performance_review.html", {
@@ -89,6 +91,7 @@ def edit_performance_review(request, review_id):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your perfomance review has been updated.')
             return HttpResponseRedirect(reverse("council:index"))
 
     return render(request, "council/edit_performance_review.html", {
@@ -106,6 +109,7 @@ def edit_profile(request, employee_id):
         if form.is_valid():
             print("works")
             form.save()
+            messages.success(request, 'Your profile has been updated.')
             return HttpResponseRedirect(reverse("council:profile"))
 
     return render(request, "council/edit_profile.html", {

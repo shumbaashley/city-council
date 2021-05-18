@@ -27,10 +27,24 @@
       <!-- page start-->
       <div class="row">
         <div class="col-lg-12">
+
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msg.message}}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+
+          
           <section class="panel">
             <header class="panel-heading">
               Perfomance Reviews Table
             </header>
+
+
 
             {% if not table_info %}
             <p class="text-center">You currently have no perfomance reviews yet! <a href="{% url 'council:create_performance_review' %}" class="text-primary">Create One</a> </p>
