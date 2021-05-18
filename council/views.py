@@ -91,7 +91,7 @@ def edit_performance_review(request, review_id):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your perfomance review has been updated.')
+            messages.info(request, 'Your perfomance review has been updated.')
             return HttpResponseRedirect(reverse("council:index"))
 
     return render(request, "council/edit_performance_review.html", {
@@ -109,7 +109,7 @@ def edit_profile(request, employee_id):
         if form.is_valid():
             print("works")
             form.save()
-            messages.success(request, 'Your profile has been updated.')
+            messages.info(request, 'Your profile has been updated.')
             return HttpResponseRedirect(reverse("council:profile"))
 
     return render(request, "council/edit_profile.html", {
