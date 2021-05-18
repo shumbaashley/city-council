@@ -21,6 +21,8 @@ class WeeklyPerfomanceReviewForm(ModelForm):
         model = WeeklyPerfomanceReview
         exclude = ('employee', 'department')
         labels = {
+            "week_starting": _(""),
+            "week_ending": _(""),
             "activity1": _("Activity"),
             "activity2": _("Activity"),
             "activity3": _("Activity"),
