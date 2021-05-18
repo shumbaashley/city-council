@@ -66,15 +66,7 @@ class WeeklyPerfomanceReviewForm(ModelForm):
 
 
 class EmployeeProfileForm(ModelForm):
-
-    # def __init__(self, *args, **kwargs):
-    #    super(Employee, self).__init__(*args, **kwargs)
-    #    self.fields['comment_by_supervisor'].widget.attrs['readonly'] = True
-    #    self.fields['comment_by_assistant_director'].widget.attrs['readonly'] = True
-    #    self.fields['checked_and_approved'].disabled = True
-    #    self.fields['comment_by_director'].widget.attrs['readonly'] = True
-
-       
+      
     class Meta:
         model = Employee
         exclude = ('id', 'user', 'department', 'medical_records', 'leave_record', 'displinary_record', 'date_joined', 'salary', 'grade', 'qualifications' , 'sex' )
