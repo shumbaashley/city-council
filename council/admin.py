@@ -8,7 +8,6 @@ from django.contrib.auth.models import Group
 admin.site.unregister(Group)
 
 class UserCreateForm(UserCreationForm):
-    list_filter = ()
     class Meta:
         model = User
         fields = ('username', 'first_name' , 'last_name', 'email', 'is_staff')
@@ -28,14 +27,23 @@ class UserAdmin(UserAdmin):
 
 # Re-register UserAdmin
 # admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+
+
+@admin.register(User)
+class User(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "username", "email", "is_staff",)
+    list_display_links = ("username",)
+    search_fields = ("username", "email", "first_name", "last_name")
+
+
+admin.site.register(UserAdmin)
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ("name", "department_number", "sub_departments",)
 
 @admin.register(Employee)
-class EmployeeAdmin(admin.ModelAdmin):
+class EmployeeProfileAdmin(admin.ModelAdmin):
     list_display = ("user" , "works_number", "department", "sex",  "phone_number", "date_joined",)
     list_display_links = ("user", "department")
     # list_filter = ("user", "department","date_joined",)
