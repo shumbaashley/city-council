@@ -30,9 +30,9 @@ def login_view(request):
       if user is not None:
           login(request, user)
           if user.is_staff:
-            return HttpResponseRedirect(reverse("council:index"))
-          else:
             return HttpResponseRedirect(reverse("admin:index"))
+          else:
+            return HttpResponseRedirect(reverse("council:index"))
       else:
           return render(request, "council/login.html", {"message": "Invalid credentials."})
 

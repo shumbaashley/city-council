@@ -36,7 +36,8 @@ class Department(models.Model):
 
     class Meta:
         ordering = ("-date_created",)
-        verbose_name = "Department Manager"
+        verbose_name = "Departments"
+        verbose_name_plural = "Departments"
 
     def __str__(self):
         return self.name
@@ -47,23 +48,23 @@ class Employee(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name = 'Employee', related_name="employee")
+    works_number = models.CharField(max_length=15, verbose_name = 'Works Number')
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="dep")
-    photo = models.ImageField(max_length=255, blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True, verbose_name = 'Date of Birth')
     sex = models.CharField(choices=GENDER_CHOICES, max_length=255)
     marital_status = models.CharField(choices=MARITAL_STATUS_CHOICES, max_length=255, verbose_name = 'Marital Status')
+    salary = models.DecimalField(max_digits=12, decimal_places=2)
+    photo = models.ImageField(max_length=255, blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name = 'Date of Birth')
     home_address = models.TextField(max_length=100, blank=True, null=True, verbose_name = 'Home Address')
     phone_number = models.CharField(max_length=15, blank=True, null=True, verbose_name = 'Phone Number')
     next_of_kin_name = models.CharField( blank=True, null=True,max_length=100, verbose_name = 'Next of Kin Name')
     next_of_kin_phone_number = models.CharField(blank=True, null=True, max_length=15, verbose_name = 'Next of Kin Contact Number')
     grade = models.CharField(blank=True, null=True,max_length=255)
-    salary = models.DecimalField(max_digits=12, decimal_places=2)
     qualifications = models.TextField(max_length=500, blank=True, null=True)
     medical_records = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Medical Records')
     leave_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Leave Record')
     displinary_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Displinary Record')
     date_joined = models.DateField(auto_now_add=True, null=True)
-    works_number = models.CharField(max_length=15, verbose_name = 'Works Number')
 
     class Meta:
         ordering = ("-date_joined",)
