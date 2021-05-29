@@ -29,14 +29,14 @@ class UserAdmin(UserAdmin):
 # admin.site.unregister(User)
 
 
-@admin.register(User)
+@admin.register(User, UserAdmin)
 class User(admin.ModelAdmin):
     list_display = ("first_name", "last_name", "username", "email", "is_staff",)
     list_display_links = ("username",)
     search_fields = ("username", "email", "first_name", "last_name")
 
 
-admin.site.register(UserAdmin)
+# admin.site.register(UserAdmin)
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
