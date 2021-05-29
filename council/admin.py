@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 admin.site.unregister(Group)
 
 class UserCreateForm(UserCreationForm):
-
+    list_filter = ()
     class Meta:
         model = User
         fields = ('username', 'first_name' , 'last_name', 'email', 'is_staff')
