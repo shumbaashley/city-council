@@ -29,7 +29,10 @@ def login_view(request):
       user = authenticate(request, username=username, password=password)
       if user is not None:
           login(request, user)
-          return HttpResponseRedirect(reverse("council:index"))
+          if user.is_staff:
+            return HttpResponseRedirect(reverse("council:index"))
+          else:
+            return HttpResponseRedirect(reverse("admin:index"))
       else:
           return render(request, "council/login.html", {"message": "Invalid credentials."})
 

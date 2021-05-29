@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
-from .models import Department, Employee, DepartmentManager, User, WeeklyPerfomanceReview
+from .models import Department, Employee, User, WeeklyPerfomanceReview
 
 from django.contrib.auth.models import Group
 
@@ -36,10 +36,10 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ("user" , "department", "photo",  "sex",  "phone_number", "date_joined",)
-    list_display_links = ("user", "photo", "department")
-    list_filter = ("user", "department","date_joined",)
-    search_fields = ("user", "department",)
+    list_display = ("user" , "works_number", "department", "sex",  "phone_number", "date_joined",)
+    list_display_links = ("user", "department")
+    # list_filter = ("user", "department","date_joined",)
+    search_fields = ("user", "works_number", "department",)
 
 
 # @admin.register(DepartmentManager)
@@ -48,8 +48,8 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 @admin.register(WeeklyPerfomanceReview)
-class DepartmentAdmin(admin.ModelAdmin):
+class WeeklyPerfomanceReview(admin.ModelAdmin):
     list_display = ("employee", "department", "week_starting", "week_ending", "checked_and_approved", "created_on")
     list_display_links = ("employee", "department",)
-    list_filter = ("employee", "department",  "checked_and_approved", "week_starting", "week_ending",)
+    # list_filter = ("employee", "department",  "checked_and_approved", "week_starting", "week_ending",)
     search_fields = ("employee", "department",)

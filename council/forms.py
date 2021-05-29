@@ -4,8 +4,8 @@ from .models import WeeklyPerfomanceReview, Employee
 from django.utils.translation import ugettext_lazy as _
 
 
-class DateInput(forms.DateTimeInput):
-    input_type = 'date'
+# class DateInput(forms.DateTimeInput):
+#     input_type = 'date'
 
 class WeeklyPerfomanceReviewForm(ModelForm):
 
@@ -60,8 +60,8 @@ class WeeklyPerfomanceReviewForm(ModelForm):
             'comment_by_supervisor': Textarea(attrs={'cols': 20, 'rows': 5}),
             'comment_by_assistant_director': Textarea(attrs={'cols': 20, 'rows': 5}),
             'comment_by_director': Textarea(attrs={'cols': 20, 'rows': 5}),
-            'week_starting': DateInput(),
-            'week_ending': DateInput(),
+            # 'week_starting': DateInput(),
+            # 'week_ending': DateInput(),
         }
 
 
@@ -69,7 +69,7 @@ class EmployeeProfileForm(ModelForm):
       
     class Meta:
         model = Employee
-        exclude = ('id', 'user', 'department', 'medical_records', 'leave_record', 'displinary_record', 'date_joined', 'salary', 'grade', 'qualifications' , 'sex' )
+        exclude = ('id', 'user', 'department', 'medical_records', 'leave_record', 'displinary_record', 'date_joined', 'salary', 'grade', 'qualifications' , 'sex', 'works_number' )
         labels = {
             "photo": _(""),
             "date_of_birth": _(""),
@@ -81,22 +81,6 @@ class EmployeeProfileForm(ModelForm):
         }
         widgets = {
             'home_address': Textarea(attrs={'cols': 20, 'rows': 5}),
-            'date_of_birth': DateInput(),
+            # 'date_of_birth': DateInput(),
         }
 
-
-    # photo 
-    # date_of_birth
-    # sex 
-    # marital_status  
-    # home_address 
-    # phone_number 
-    # next_of_kin_name 
-    # next_of_kin_phone_number 
-    # grade 
-    # salary 
-    # qualifications 
-    # medical_records  
-    # leave_record 
-    # date_joined 
-    

@@ -20,6 +20,10 @@ class User(AbstractUser):
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+    
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
 
 class Department(models.Model):  
     
@@ -32,6 +36,7 @@ class Department(models.Model):
 
     class Meta:
         ordering = ("-date_created",)
+        verbose_name = "Department Manager"
 
     def __str__(self):
         return self.name
@@ -41,7 +46,7 @@ class Employee(models.Model):
     
 
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="employee")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name = 'Employee', related_name="employee")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="dep")
     photo = models.ImageField(max_length=255, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True, verbose_name = 'Date of Birth')
@@ -58,10 +63,12 @@ class Employee(models.Model):
     leave_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Leave Record')
     displinary_record = models.TextField(max_length=500, blank=True, null=True, verbose_name = 'Displinary Record')
     date_joined = models.DateField(auto_now_add=True, null=True)
-    
+    works_number = models.CharField(max_length=15, verbose_name = 'Works Number')
 
     class Meta:
         ordering = ("-date_joined",)
+        verbose_name = "Employee Profile"
+        verbose_name_plural = "Employee Profiles"
 
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)
@@ -77,7 +84,7 @@ class DepartmentManager(models.Model):
     class Meta:
         ordering = ("-from_date",)
         verbose_name = "Department Manager"
-
+        verbose_name_plural = "Department Managers"
 
     def __str__(self):
         return "{} - {}".format(self.employee, self.department)
@@ -137,6 +144,7 @@ class WeeklyPerfomanceReview(models.Model):
     class Meta:
         ordering = ("-created_on",)
         verbose_name = "Weekly Perfomance Review"
+        verbose_name_plural = "Weekly Perfomance Reviews"
     def __str__(self):
         return '{} {} for the for week ending {}'.format(self.employee.user.first_name, self.employee.user.last_name, self.week_ending)
 
