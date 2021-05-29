@@ -54,7 +54,7 @@ class Employee(models.Model):
     marital_status = models.CharField(choices=MARITAL_STATUS_CHOICES, max_length=255, verbose_name = 'Marital Status')
     salary = models.DecimalField(max_digits=12, decimal_places=2)
     photo = models.ImageField(max_length=255, blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True, verbose_name = 'Date of Birth')
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name = 'Date of Birth', help_text='Use date format YYYY-MM-DD')
     home_address = models.TextField(max_length=100, blank=True, null=True, verbose_name = 'Home Address')
     phone_number = models.CharField(max_length=15, blank=True, null=True, verbose_name = 'Phone Number')
     next_of_kin_name = models.CharField( blank=True, null=True,max_length=100, verbose_name = 'Next of Kin Name')
@@ -96,8 +96,8 @@ class WeeklyPerfomanceReview(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="staff_member")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="dept")
 
-    week_starting = models.DateField(null=True)
-    week_ending = models.DateField(null=True)
+    week_starting = models.DateField(null=True, help_text='Use date format YYYY-MM-DD')
+    week_ending = models.DateField(null=True, help_text='Use date format YYYY-MM-DD')
 
     ## Work Plan 
     activity1 = models.CharField(max_length=500, verbose_name = 'Activity 1')
