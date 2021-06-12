@@ -24,7 +24,16 @@ class UserAdmin(UserAdmin):
             'fields': ('first_name', 'last_name', 'username', 'email', 'is_staff',  'password1', 'password2', ),
         }),
         ('Permissions', {
-            'fields': ('is_superuser', 'is_staff')
+            'fields': ('is_staff')
+        })
+    )
+    fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'username', 'email', 'is_staff',),
+        }),
+        ('Permissions', {
+            'fields': ('is_staff')
         })
     )
 
