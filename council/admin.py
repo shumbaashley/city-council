@@ -23,6 +23,9 @@ class UserAdmin(UserAdmin):
             'classes': ('wide',),
             'fields': ('first_name', 'last_name', 'username', 'email', 'is_staff',  'password1', 'password2', ),
         }),
+        ('Permissions', {
+            'fields': ('is_superuser', 'is_staff')
+        })
     )
 
 
